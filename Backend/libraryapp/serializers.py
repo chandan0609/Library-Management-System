@@ -1,6 +1,4 @@
-from rest_framework import serializers
 
-from .models import User, Book, BorrowRecord, Category
 
 
 class UserSerializer(serializers.ModelSerializer):
