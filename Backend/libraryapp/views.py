@@ -1,5 +1,6 @@
+from rest_framework import viewsets
 from django.shortcuts import render
-from .models import User,Book, BookRecord,Category
+from .models import User,Book, BorrowRecord,Category
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from .utils import send_due_notification
 from django.utils import timezone
