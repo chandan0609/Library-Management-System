@@ -20,7 +20,7 @@ class BorrowRecordViewSet(viewsets.ModelViewSet):
     queryset = BorrowRecord.objects.all()
     serializer_class = BorrowRecordSerializer
     permission_classes = [IsAuthenticated]
-    
+
     def check_due_books(self):
         records = BorrowRecord.objects.filter(due_date__lte=timezone.now())
         for record in records:
@@ -33,3 +33,16 @@ class BorrowRecordViewSet(viewsets.ModelViewSet):
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    
+    def get_permissions(self):
+        if self.action in ['create', 'list']:
+            permission_classes = [IsAdminUser]
+        elif self.action in ['retrieve', 'update', 'partial_update']:
+            permission_classes = [IsAuthenticated]
+        else:
+            permission_classes = [IsAdminUser]
+        return [permission() for permission in permission_classes]
