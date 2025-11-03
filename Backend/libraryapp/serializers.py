@@ -1,6 +1,4 @@
-from rest_framework import serializers
 
-from .models import User, Book, BorrowRecord, Category
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -19,4 +17,4 @@ class BorrowRecordSerializer(serializers.ModelSerializer):
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields= ['id','name','books']
+        fields= "__all__"
